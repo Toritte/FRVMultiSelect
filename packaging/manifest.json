@@ -1,0 +1,15 @@
+{
+  "Version": 1,
+  "Guid": "dc892e55-e936-48c2-87b6-fd5f295877c4",
+  "Name": "FRV MultiSelect v0.1",
+  "Description": "Select different FRVs together. Requires Bingus Shared Loader v15 / API 1.",
+  "Options": [
+    {
+      "Name": "FRV selection only",
+      "Description": "Only FRV records are changed. Optional Exosuit MultiSelect v0.2 support.",
+      "Include": [
+        "Addon"
+      ]
+    }
+  ]
+}
