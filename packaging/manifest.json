@@ -1,12 +1,12 @@
 {
   "Version": 1,
   "Guid": "dc892e55-e936-48c2-87b6-fd5f295877c4",
-  "Name": "FRV MultiSelect v0.1",
-  "Description": "Select different FRVs together. Requires Bingus Shared Loader v15 / API 1.",
+  "Name": "FRV MultiSelect v0.2",
+  "Description": "For Steam build 25327279. Requires Bingus Shared Loader v15 / API 1. Select different FRVs together. Optional Exosuit MultiSelect v0.3 coexistence.",
   "Options": [
     {
-      "Name": "FRV selection only",
-      "Description": "Only FRV records are changed. Optional Exosuit MultiSelect v0.2 support.",
+      "Name": "FRV MultiSelect v0.2",
+      "Description": "For Steam build 25327279. Requires Bingus Shared Loader v15 / API 1. Select different FRVs together. Optional Exosuit MultiSelect v0.3 coexistence.",
       "Include": [
         "Addon"
       ]

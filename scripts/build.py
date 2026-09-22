@@ -54,8 +54,8 @@ def make_files(root=ROOT):
         'manifest.json':(json.dumps(manager,ensure_ascii=False,indent=2)+'\n').encode(),
         'FRVMultiSelect_ReadMe.txt':(root/'INSTALL.txt').read_bytes(),
 }
-    provenance={'name':'FRV MultiSelect','author':'Toritte','revision':'v0.1.0-experimental','display_version':'v0.1.0 EXPERIMENTAL','gameplay_verified':False,
-        'steam_build':24826606,'exe_version':'1.8.45317.0',
+    provenance={'name':'FRV MultiSelect','author':'Toritte','revision':'v0.2-data','display_version':'v0.2','gameplay_verified':False,
+        'steam_build':25327279,'exe_version':'1.8.45850.0',
         'game_exe_sha256':config['exe_sha256'],'game_dll_sha256':config['game_sha256'],
         'files':{name:digest(data) for name,data in sorted(files.items())},
         'files_scope':'Every ZIP member except this provenance manifest; paths are relative to ZIP root.',
@@ -75,7 +75,7 @@ def verify_files(files):
 
 def build(out,root=ROOT):
     files=make_files(root);verify_files(files);out.mkdir(parents=True,exist_ok=True)
-    destination=out/'FRV-MultiSelect-v0.1.0-experimental.zip'
+    destination=out/'FRV-MultiSelect-v0.2.zip'
     with zipfile.ZipFile(destination,'w',compression=zipfile.ZIP_DEFLATED) as z:
         for name,data in sorted(files.items()):
             info=zipfile.ZipInfo(name,(1980,1,1,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;info.external_attr=0o100644<<16

@@ -4,14 +4,14 @@ from lupa.luajit21 import LuaRuntime
 R=Path(__file__).resolve().parents[1]
 C=json.loads((R/'config/supported-build.json').read_text())
 TARGETS={int(k):v for k,v in C['targets'].items()}
-BASE,GAME,SIZE=0x30000000,0x10000000,79296
+BASE,GAME,SIZE=0x30000000,0x10000000,80280
 GUARD=bytes.fromhex(C['selection_guard_hex'])
 
 class Fixture:
     def __init__(self):
         self.lua=LuaRuntime(encoding=None);self.apply=self.lua.execute((R/'src/data_patch.lua').read_bytes())
         self.memory=bytearray(SIZE);struct.pack_into('<I',self.memory,0,11)
-        self.table=bytearray(148*8);self.offsets={};pos=4;rows=C['baseline_flags']
+        self.table=bytearray(150*8);self.offsets={};pos=4;rows=C['baseline_flags']
         for group in range(11):
             batch=rows[group*13:(group+1)*13] if group<10 else rows[130:]
             root=pos+24;start=root+16;finish=start+len(batch)*400
@@ -26,10 +26,10 @@ class Fixture:
         self.original=bytes(self.memory);self.code=GUARD;self.calls=0;self.writes=[];self.fail_at=0;self.fail_mode='';self.writable=True;self.owner=BASE
     def read(self,a,n):
         a,n=int(a),int(n)
-        if a==GAME+0x2791f68 and n==8:return struct.pack('<Q',self.owner)
-        t=GAME+0x2acd110
+        if a==GAME+0x348e8f8 and n==8:return struct.pack('<Q',self.owner)
+        t=GAME+0x37cb600
         if t<=a and a+n<=t+len(self.table):return bytes(self.table[a-t:a-t+n])
-        if a==GAME+0x11ccd5d and n==len(GUARD):return self.code
+        if a==GAME+0x146e27d and n==len(GUARD):return self.code
         if BASE<=a and a+n<=BASE+SIZE:return bytes(self.memory[a-BASE:a-BASE+n])
     def pointer(self,s,o=0):
         if s is None or o<0 or len(s)<o+8:return None
@@ -63,11 +63,11 @@ class DataTests(unittest.TestCase):
                 if mode=='writable':f.writable=False
                 elif mode=='code':f.code=b'X'+GUARD[1:]
                 elif mode=='flags':f.memory[f.offsets[99]+0x104]^=1
-                elif mode=='table':f.table[103*8]^=8
-                elif mode=='duplicate':struct.pack_into('<I',f.memory,f.offsets[103],25)
+                elif mode=='table':f.table[105*8]^=8
+                elif mode=='duplicate':struct.pack_into('<I',f.memory,f.offsets[105],26)
                 elif mode=='group':f.memory[4]^=1
                 elif mode=='pointer':struct.pack_into('<Q',f.memory,28,0)
-                else:f.memory[f.offsets[26]+0x106]&=0xef
+                else:f.memory[f.offsets[27]+0x106]&=0xef
                 before=bytes(f.memory)
                 with self.assertRaises(Exception):f.run()
                 self.assertFalse(f.writes);self.assertEqual(bytes(f.memory),before)
@@ -105,7 +105,7 @@ for _,mode in ipairs({'normal','wrong_hash','missing_loader','no_log','disk_erro
  end} or nil
  local api={module=function(n)return n or 'exe' end,module_hash=function(n)
   if mode=='wrong_hash' then return 'bad' end
-  return n=='exe' and 'A09FF52663E73B94FB0CAC0DCB5BA84FFD10ECF44F74A8921AC66AF923988CC3' or 'CC75948D90FDFDE259DCB519E9933DB7FFA3CCB281CE4FB89E6B1B011557470C'
+  return n=='exe' and 'D8E23968D1412B07E06785321727D63EDF74E711214D6F6ADEB3BFCA95CA6827' or '73374BD4E38386BEB9A23BEF480082B67D457EBC77485FBEC5F488B4E95E201F'
  end}
  local patch=function()calls=calls+1;if mode=='patch_error' then error('patch_failure') end;return 'ok' end
  local install=assert(loadstring(source))()

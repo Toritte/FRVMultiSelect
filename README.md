@@ -13,7 +13,7 @@ Requires **Bingus Shared Loader v15 / API 1**, downloaded separately from [Cowbo
 The loader is not included in this download. [Official loader instructions](https://github.com/CowboyBingus/BingusSharedLoader).
 
 1. Close the game. Download the mod ZIP from [Releases](https://github.com/Toritte/FRVMultiSelect/releases).
-2. Import the loader ZIP and `FRV-MultiSelect-v0.1.zip` into Arsenal or HD2MM.
+2. Import the loader ZIP and `FRV-MultiSelect-v0.2.zip` into Arsenal or HD2MM.
 3. Follow the loader's priority instructions. In Arsenal's default priority, put the loader last; with reversed priority put it first.
 4. Deploy then start the game, select your FRVs.
 
@@ -32,7 +32,7 @@ Exosuit MultiSelect is optional. Keep it disabled if you only want FRV multi-sel
 
 
 ## Compatibility
-Supported game version: Steam build **24826606**, EXE **1.8.45317.0**. Game updates may require a mod update.
+Supported game version: Steam build **25327279**, EXE **1.8.45850.0**. Game updates may require a mod update.
 
 [Build from source](CONTRIBUTING.md) · [Technical walkthrough](docs/TECHNICAL.md) · [Third-party dependencies](THIRD_PARTY.md) · [Release notes](docs/RELEASE_NOTES.md)
 
@@ -42,4 +42,5 @@ Created by **Toritte**. Thanks to **CowboyBingus** for Bingus Shared Loader.
 For source and artwork reuse terms, see [license status](LICENSE-STATUS.md) and [third-party notices](THIRD_PARTY.md).
 
 AI disclosure: GPT-6 Astra assisted with research, implementation, debugging and documentation.
+
 

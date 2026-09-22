@@ -1,4 +1,4 @@
-FRV MultiSelect v0.1.0 — Toritte
+FRV MultiSelect v0.2 — Toritte
 Select different available FRV variants together in your stratagem loadout.
 
 Requires Bingus Shared Loader v15 / API 1, downloaded separately:
@@ -6,25 +6,37 @@ https://ayakamods.com/mods/bingus-shared-loader.3861/
 Official instructions: https://github.com/CowboyBingus/BingusSharedLoader
 The loader is not bundled with this mod.
 
-Installation:
-1. Fully close Helldivers 2.
-2. Disable Vehicle MultiSelect, the combined version.
-3. Import this mod and Bingus Shared Loader into Arsenal or HD2MM and enable both.
-4. Follow the loader's priority instructions. In Arsenal's default priority,
-   put the loader last; with first-mod priority enabled, put it first.
-5. Deploy and restart the game.
+Requirements and installation
+Requires Bingus Shared Loader v15 / API 1, downloaded separately from CowboyBingus on AyakaMods 
+(https://ayakamods.com/mods/bingus-shared-loader.3861/).
+The loader is not included in this download. 
+Official loader instructions: https://github.com/CowboyBingus/BingusSharedLoader
 
-Optional: enable Exosuit MultiSelect v0.2 alongside this mod for both FRV and
-exosuit multi-selection. FRV MultiSelect works without that optional mod.
-Do not enable combined Vehicle MultiSelect at the same time.
+1. Close the game.
+2. Import the loader ZIP and FRV-MultiSelect-v0.2.zip into Arsenal or HD2MM.
+3. Follow the loader's priority instructions. In Arsenal's default priority, put the loader last.
+With reversed priority put it first.
+4. Deploy then start the game, select your FRVs.
+
+
+Uninstallation
+Fully close the game, disable FRV MultiSelect, then purge and redeploy your remaining mods before restarting. Keep the loader enabled while other installed mods require it.
+
+Using it with Exosuit MultiSelect
+(https://github.com/Toritte/ExosuitMultiSelect)
+You have to make sure that BSL comes to the last, or first with reversed priority.
+Suggested Load order is presented here:
+- Exosuit MultiSelect
+- FRV MultiSelect
+- Bingus Shared Loader
+
+Exosuit MultiSelect is optional. Keep it disabled if you only want FRV multi-selection only.
+
 
 Keeps the normal four slots. Does not unlock equipment, duplicate the same
 stratagem or change cooldowns and call-in limits.
-Supported Steam build 24826606 / EXE 1.8.45317.0.
+Supported Steam build 25327279 / EXE 1.8.45850.0.
 Game updates may require a mod update.
-
-Uninstall: fully close the game, disable this mod, purge and redeploy remaining
-mods, then restart. Keep the loader if another enabled mod needs it.
 
 Credits: CowboyBingus Windows adapter and separate Bingus Shared Loader.
 AI assistance: GPT-6 Astra (research, implementation, debugging, documentation).

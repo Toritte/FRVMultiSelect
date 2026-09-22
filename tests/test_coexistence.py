@@ -8,12 +8,12 @@ class CoexistenceTests(unittest.TestCase):
             with self.subTest(order=order):
                 f=Fixture(); lua=f.lua
                 # Both guards overlap the same original code region.
-                exoguard=GUARD[0x11cce65-0x11ccd5d:0x11ccf45-0x11ccd5d]
+                exoguard=GUARD[0x146e385-0x146e27d:0x146e465-0x146e27d]
                 origread=f.read
                 def read(a,n):
-                    if a==GAME+0x11cce65 and n==224:return exoguard
+                    if a==GAME+0x146e385 and n==224:return exoguard
                     return origread(a,n)
-                alltargets=set(TARGETS)|{26,10,89,86}
+                alltargets=set(TARGETS)|{27,10,91,88}
                 writes=[]
                 import test_frv
                 def write(a,s):
@@ -41,11 +41,11 @@ class CoexistenceTests(unittest.TestCase):
                 expected=bytearray(f.original)
                 for id in alltargets:expected[f.offsets[id]+0x106]&=255^(32 if id in TARGETS else 16)
                 self.assertEqual(f.memory,expected)
-                self.assertEqual(baseline[26],dict(C['baseline_flags'])[26])
+                self.assertEqual(baseline[27],dict(C['baseline_flags'])[27])
 
     def test_unfinished_exosuit_times_out_without_patch(self):
         f=Fixture();lua=f.lua
-        lua.execute(b"update=function()end;ExosuitMultiSelect={revision='0.2-data-experimental',status='pending'};CowboyBingusModLoader={open_log=function()return {write=function()return true end,flush=function()return true end,close=function()end} end}")
+        lua.execute(b"update=function()end;ExosuitMultiSelect={revision='0.3-data',status='pending'};CowboyBingusModLoader={open_log=function()return {write=function()return true end,flush=function()return true end,close=function()end} end}")
         install=lua.execute((R/'src/lifecycle.lua').read_bytes())
         def forbidden(*args):raise AssertionError('must not initialize adapter or patch')
         install(forbidden,forbidden,lua.table_from(dict(C['baseline_flags'])),GUARD)
